@@ -1,22 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using DemoApiTests.Endpoints;
+using DemoApiTests.Models.CoronavirusSamartable;
+using FluentAssertions;
+using System;
+using System.Net;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Xunit;
-using DemoApiTests.Endpoints;
-using DemoApiTests.Models.CoronavirusSamartable;
-using System.Net.Http;
-using System.Net;
-using FluentAssertions;
-using System.Text.Json;
 
 namespace DemoApiTests.Tests
 {
     public class GetNewsEndpointTests
     {
         [Fact]
-        public async Task GetNewsForUS()
+        public async Task CheckLocationStructureForUSIsCorrect()
         {
             // arrange
             var endpoint = new GetNewsEndpoint();
@@ -45,7 +41,7 @@ namespace DemoApiTests.Tests
         [InlineData("US")]
         [InlineData("FR")]
         [InlineData("PL")]
-        public async Task GetNews(string region)
+        public async Task CheckIsoCodeInResponseIsEqualToIsoCodeFromRequest(string region)
         {
             // arrange
             var endpoint = new GetNewsEndpoint();
